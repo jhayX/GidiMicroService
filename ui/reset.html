@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Password Reset</title>
+</head>
+<style>
+  * {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #616770;
+}
+.toppad {
+    padding: 3% 0;
+}
+.other_option {
+    margin-top: 10px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    margin: 0 auto;
+}
+/* texts */
+.text-center {
+    text-align: center;
+}
+
+.text-grey {
+    color: #616770;
+}
+
+.text-orange {
+    color: orangered;
+}
+
+.text-blue {
+    color: #4e2b96;
+}
+.form-card,
+.form-card1 {
+    width: 400px;
+    padding: 1rem;
+    background-color: #ffff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+.form-card1 {
+    width: 600px !important;
+}
+/* input fields */
+input[type=text],
+input[type=date],
+input[type=password],
+select {
+    width: 100%;
+    padding: 16px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    border-radius: .25rem;
+
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+select:focus {
+    background-color: #ddd;
+    outline: none;
+}
+.registerbtn {
+    background: linear-gradient(102.6deg, #3795EB 17.39%, #63D2EB 72.47%);    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    border-radius: .25rem;
+
+}
+
+.registerbtn:hover {
+    opacity: 1;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+  position: fixed;
+  bottom: 0;
+  background-color: #fefefe;
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  background: transparent;
+      border: 1px solid transparent;
+
+}
+
+.close:hover,
+.close:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 5px;
+  background: linear-gradient(102.6deg, #3795EB 17.39%, #63D2EB 72.47%);    color: white;
+  color: white;
+}
+
+.op{
+    text-transform: capitalize;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {bottom: -300px; opacity: 0} 
+  to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #3795EB;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+</style>
+<body style="padding:3rem 0">
+
+  <div class="toppad">
+      <h1 class="text-center text-orange">
+        <img width=150 height=150 src='https://res.cloudinary.com/jhayx/image/upload/v1575807211/gidilogo_dixol7.png'>
+      <h2 class="text-center text-grey">Password Reset <span id="logo">Form</span></h2>
+      <div class="form-card">
+          <div class="container">
+              <label for="email"><b>New Password</b></label>
+              <input type="password" id="pass" required>
+
+              <label for="psw"><b>Confirm New Password</b></label>
+              <input type="password" id="cpass" required>
+              <hr>
+              <button id="login" onclick="login()" class="registerbtn">Reset Password</button>
+          </div>
+          <!-- </form> -->
+      </div>
+      <br />
+      <div class="other_option text-center">
+          <p>...gas, one touch away</p>
+      </div>
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" onclick="hy()">&times;</button>
+            <div style="padding:4px"><img width=50 height=50 src='https://res.cloudinary.com/jhayx/image/upload/v1575807679/Asset_1.1_em0lfg.png'></div>
+          </div>
+          <div class="modal-body">
+            <h3 class="op" id="res">Gidi</h3>
+          </div>
+        </div>
+      
+      </div>
+      
+  </div>
+  <div id="overlay">
+  <div id="loader">
+  </div>
+  </div>
+
+  
+
+<script>
+const login = () => {
+const arr = window.location.href;
+  const token = arr.split('/')[7];
+  const password = document.getElementById("pass").value;
+  const cpassword = document.getElementById("cpass").value;
+  const test = document.getElementById("res");
+
+  if(password != cpassword){
+    modal.style.display = "block";
+    return test.innerHTML= 'Passwords do not match'; 
+  }
+
+  if (password === '' || cpassword === ''){
+    modal.style.display = "block";
+    return test.innerHTML= 'Inputs cannot be empty'; 
+  }
+  document.getElementById("overlay").style.display = "block";
+    const url = `/api/v1/auth/passwordresetverify/${token}`;
+  const data = {
+    "password": password,
+  };
+  fetch(url, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(res => {
+    console.log('ryuijhgf',res);
+    document.getElementById("overlay").style.display = "none";
+    modal.style.display = "block";
+    test.innerHTML= res.message;
+    })
+    .catch(error => {
+        document.getElementById("loader").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+      console.log(error)
+      modal.style.display = "block";
+    test.innerHTML= error.message;
+    });
+}
+
+const hy = () => {
+    console.log('huio')
+    modal.style.display = "none";
+}
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+ </script>  
+</body>
+</html>
